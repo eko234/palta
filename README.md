@@ -20,7 +20,7 @@ Here is a little code snippet:
      document3  (documents.create       {:collection "users" :keys [{:name "slow dancer"} {:name "valkyrie"}] : jwt})
      document4  (documents.find_many    {:collection "users" :data ["32087"] : jwt})
      document5  (documents.replace_one  {:collection "users" :key "1413" :data {:spoa "SESES"} : jwt})
-     document6  (documents.replace_many {:collection "users" :data [{:_key "1413" :mierda "sapa"}] : jwt})
+     document6  (documents.replace_many {:collection "users" :data [{:_key "1413" :rana "sapa"}] : jwt})
      document7  (documents.update_one   {:collection "users" :data :key "666" :data {:name "a name"} : jwt})
      document8  (documents.update_many  {:collection "users" :data [{:_key "32087" :name "a name"}] : jwt})
      document9  (documents.delete_one   {:collection "users" :key "32087" : jwt})
