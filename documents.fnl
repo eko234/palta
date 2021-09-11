@@ -1,12 +1,12 @@
 (local cjson (require :cjson))
 
-(fn auth [{: username : password : host : secure : port }]
+(fn header [{: host : secure : port : collection : key : jwt : params}]
   (let
     [httpc     ((. (require :resty.http) :new))
      uri       (string.format "%s://%s:%s" (or (and secure "https") "http") (or host "127.0.0.1") (or port "8529"))
-     (res err) (httpc:request_uri (string.format "%s/_open/auth" uri)
-                                  {:method :POST
-                                   :body (cjson.encode {: username : password })})]
+     (res err) (httpc:request_uri (string.format "%s/_api/document/%s/%s" uri collection key)
+                                  {:method :HEAD
+                                   :headers {:Authorization (string.format "bearer %s" jwt)}})]
     (cjson.decode res.body)))
 
 (fn find_one [{: host : secure : port : collection : key : jwt : params}]
@@ -126,8 +126,7 @@
                                    :headers {:Authorization (string.format "bearer %s" jwt)}})]
     (cjson.decode res.body)))
 
-{: auth 
- : find_one
+{: find_one
  : find_many 
  : replace_one
  : replace_many
@@ -135,4 +134,5 @@
  : update_many
  : delete_one
  : delete_many
- : create }
+ : create 
+ : header }
