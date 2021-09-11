@@ -1,0 +1,3 @@
+# Resty Palta
+
+This is a library to communicate with arangodb databases using the arangodb http api, it aims to be simple and unopinionated, these are more like building blocks indeed...
